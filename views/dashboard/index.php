@@ -5,11 +5,13 @@
 <?php } else{?>
     <ul class="listado-proyectos">
         <?php foreach($proyectos as $proyecto){ ?>
-            <li class="proyecto">
-                <a href="/proyecto?id=<?php echo $proyecto->url; ?>">
+            <a href="/proyecto?id=<?php echo $proyecto->url; ?>">
+                <li class="proyecto">
+                    
                     <?php echo $proyecto->proyecto; ?>
-                </a>
-            </li>
+                    
+                </li>
+            </a>
         <?php }?>
     </ul>
 <?php } ?>

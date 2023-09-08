@@ -31,4 +31,17 @@
             font-size: 1.4rem;
         }
     }
+    .tarea p:hover{
+        cursor: pointer;
+    }
+    .enlace{
+        @include m.boton(v.$indigo,v.$blanco);
+        &:hover{
+            color: v.$blanco;
+        }
+        @include m.tablet {
+            margin-left: 15rem;
+            margin-right: 15rem;
+        }
+    }
 }

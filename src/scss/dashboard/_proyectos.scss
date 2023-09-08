@@ -28,8 +28,9 @@
         &:hover{
             background-color: darken(v.$indigo,5%);
         }
-        a{
-            color: v.$blanco;
-        }
+        
+    }
+    a{
+        color: v.$blanco;
     }
 }

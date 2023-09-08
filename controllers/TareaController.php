@@ -46,12 +46,50 @@ class TareaController{
     }
     public static function actualizar(){
         if($_SERVER["REQUEST_METHOD"]==="POST"){
-
+            session_start();
+            $proyecto = Proyecto::where("url",$_POST["proyectoId"]);
+            if(!$proyecto || $proyecto->propietarioId!==$_SESSION["id"]){
+                $respuesta = [
+                    "tipo" => "error",
+                    "mensaje" => "Hubo un error al agregar la tarea"
+                ];
+                echo json_encode($respuesta);
+                return;
+            }
+            $tarea = new Tarea($_POST);
+            $tarea->proyectoId=$proyecto->id;
+            $resultado = $tarea->guardar();
+            $respuesta = [
+                "tipo" => "exito",
+                "id" => $resultado["id"],
+                "mensaje" => "Actualizado correctamente",
+                "proyectoId" => $proyecto->id
+            ];
+            echo json_encode(["respuesta" => $respuesta]);
         }
     }
     public static function eliminar(){
         if($_SERVER["REQUEST_METHOD"]==="POST"){
-
+            session_start();
+            $proyecto = Proyecto::where("url",$_POST["proyectoId"]);
+            if(!$proyecto || $proyecto->propietarioId!==$_SESSION["id"]){
+                $respuesta = [
+                    "tipo" => "error",
+                    "mensaje" => "Hubo un error al agregar la tarea"
+                ];
+                echo json_encode($respuesta);
+                return;
+            }
+            $tarea = new Tarea($_POST);
+            $tarea->proyectoId=$proyecto->id;
+            $resultado = $tarea->eliminar();
+            $respuesta = [
+                "tipo" => "exito",
+                "id" => $resultado["id"],
+                "mensaje" => "Eliminado correctamente",
+                "proyectoId" => $proyecto->id
+            ];
+            echo json_encode(["respuesta" => $respuesta]);
         }
     }
 }
